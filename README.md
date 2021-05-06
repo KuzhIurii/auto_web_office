@@ -1,1 +1,1 @@
-# auto_web_office Для соединения с базой данных необходимо указать в файле feedback.php user, password, dbname. Разрабатывалась форма обратной связи на php 7.4 mysql 8.0/ 
+# auto_web_office Для соединения с базой данных необходимо указать в файле feedback.php user, password, dbname, dbhost. По умолчанияю обращается на localhost:3306. Разрабатывалась форма обратной связи на php 7.4 mysql 8.0/ 
