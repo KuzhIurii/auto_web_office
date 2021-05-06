@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+
+  mysql-db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: app-mysql-db
+    ports:
+      - 3306:3306
+    volumes:
+      - ./run/var:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=app
+    networks:
+      backend:
+        aliases:
+          - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql-db:db
+    ports:
+      - 8765:80
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      PMA_HOST: db
+    depends_on:
+      - mysql-db
+    networks:
+      backend:
+        aliases:
+          - pma
+
+
+networks:
+  backend:
+    name: backend-network
